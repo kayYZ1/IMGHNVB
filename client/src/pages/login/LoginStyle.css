@@ -1,0 +1,17 @@
+.login-container {
+  min-height: 100%;
+  margin: -24;
+}
+
+.left-side-panel {
+  height: 100%;
+  background-color: #151921;
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+}
+
+.right-side-panel {
+  height: 100%;
+  background-image: url("https://gw.alipayobjects.com/zos/rmsportal/FfdJeJRQWjEeGTpqgBKj.png");
+}
