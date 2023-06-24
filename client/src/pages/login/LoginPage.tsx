@@ -1,7 +1,7 @@
 import React from "react"
 import { Row, Col } from "antd"
 
-import LoginForm from "./LoginForm"
+import LoginForm from "../../components/forms/LoginForm"
 
 import "./LoginStyle.css"
 
