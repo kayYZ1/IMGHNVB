@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button, Empty } from 'antd';
+import { Empty } from 'antd';
 import { Link } from 'react-router-dom';
+
+import AddImageModal from './modals/AddImageModal';
 
 const EmptyComponent: React.FC = () => (
   <Empty
@@ -12,9 +14,7 @@ const EmptyComponent: React.FC = () => (
       </span>
     }
   >
-    <Link to="/App/Image-Edit">
-      <Button type="primary">Add an image now</Button>
-    </Link>
+    <AddImageModal />
   </Empty>
 );
 
