@@ -1,5 +1,7 @@
 import { Divider } from 'antd'
 
+import StarterPageTourComponent from '../../components/StarterPageTourComponent'
+
 const StartingPage = () => {
   return (
     <div>
@@ -9,6 +11,7 @@ const StartingPage = () => {
       <p>That's why our set of talented and handsome developers decided to include a simple tour component which purpose is to help you out.</p>
       <p>Please check your seatbelts, grab a drink of fresh coca-cola from a fridge and enjoy the ride.</p>
       <Divider>Ready for a ride?</Divider>
+      <StarterPageTourComponent />
     </div>
   )
 }

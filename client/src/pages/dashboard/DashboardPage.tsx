@@ -25,8 +25,7 @@ const DashboardPage: React.FC = () => {
         <Divider></Divider>
         <Menu
           theme="dark"
-          mode="inline"
-          defaultSelectedKeys={['1']}
+          mode="inline" 
         >
           <Menu.Item key="1" icon={<PictureOutlined />}>
             <Link to="/App/Image-Edit">Edit new image</Link>
