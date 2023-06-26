@@ -1,7 +1,7 @@
 import React from "react"
 import { Row, Col } from "antd"
 
-import LoginForm from "../../components/forms/LoginForm"
+import LoginForm from "./LoginForm"
 
 import "./LoginStyle.css"
 
@@ -12,7 +12,6 @@ const LoginPage = () => {
         <Row>
         <Col span={12}>
             <div className="left-side-panel">
-              SDASD
             </div>
         </Col>
         <Col span={12}>

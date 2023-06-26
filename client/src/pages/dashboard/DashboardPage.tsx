@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -6,9 +7,10 @@ import {
   PictureOutlined,
   FileImageOutlined,
 } from '@ant-design/icons';
-import { Layout, Menu, Button, theme } from 'antd';
+import { Layout, Menu, Button, theme, Divider } from 'antd';
+import ContentComponent from '../../components/ContentComponent';
 
-const { Header, Sider, Content } = Layout;
+const { Header, Sider } = Layout;
 
 const DashboardPage: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -17,31 +19,26 @@ const DashboardPage: React.FC = () => {
   } = theme.useToken();
 
   return (
-    <Layout style={{height: "calc(100vh)"}}>
+    <Layout style={{ height: "calc(100vh)" }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="demo-logo-vertical" />
+        <Divider></Divider>
         <Menu
           theme="dark"
           mode="inline"
           defaultSelectedKeys={['1']}
-          items={[
-            {
-              key: '1',
-              icon: <PictureOutlined />,
-              label: 'Edit new image',
-            },
-            {
-              key: '2',
-              icon: <FileImageOutlined />,
-              label: 'Your images',
-            },
-            {
-              key: '3',
-              icon: <SettingOutlined />,
-              label: 'Settings',
-            },
-          ]}
-        />
+        >
+          <Menu.Item key="1" icon={<PictureOutlined />}>
+            <Link to="/App/Image-Edit">Edit new image</Link>
+          </Menu.Item>
+          <Menu.Item key="2" icon={<FileImageOutlined />}>
+            <Link to="/App/Image-List">Your images</Link>
+          </Menu.Item>
+          <Menu.Item key="3" icon={<SettingOutlined />}>
+            <Link to="/App/Settings">Settings</Link>
+          </Menu.Item>
+        </Menu>
+
       </Sider>
       <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }}>
@@ -56,16 +53,7 @@ const DashboardPage: React.FC = () => {
             }}
           />
         </Header>
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-          }}
-        >
-          Content
-        </Content>
+        <ContentComponent />
       </Layout>
     </Layout>
   );

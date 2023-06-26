@@ -3,7 +3,7 @@ import { Row, Col, Button } from "antd"
 import { LeftOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 
-import RegisterForm from '../../components/forms/RegisterForm'
+import RegisterForm from './RegisterForm'
 
 import "./RegisterStyle.css"
 
