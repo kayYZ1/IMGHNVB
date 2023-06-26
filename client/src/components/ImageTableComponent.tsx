@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import ImageModalComponent from './ImageModalComponent';
+import ImageModalComponent from './modals/ImageModalComponent';
 
 interface DataType {
   key: React.Key;

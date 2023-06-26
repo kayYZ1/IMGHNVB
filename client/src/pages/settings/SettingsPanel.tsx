@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button, Descriptions } from 'antd';
+import { Descriptions } from 'antd';
+import SettingsPanelExtraComponent from '../../components/SettingsPanelExtraComponent';
 
 const SettingsPanel: React.FC = () => (
   <div>
-    <Descriptions title="User account information" layout="vertical" extra={<Button type="primary">Edit</Button>}>
+    <Descriptions title="User account information" layout="vertical" extra={<SettingsPanelExtraComponent/>}>
     <Descriptions.Item label="Email">RobertLewandowski@wp781.pl</Descriptions.Item>
     <Descriptions.Item label="Username">Rupert Von Lowandowski</Descriptions.Item>
     <Descriptions.Item label="Password">*************</Descriptions.Item>

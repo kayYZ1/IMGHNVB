@@ -8,7 +8,10 @@ import {
   FileImageOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Divider } from 'antd';
+
 import ContentComponent from '../../components/ContentComponent';
+
+import "./DashboardPage.css"
 
 const { Header, Sider } = Layout;
 
@@ -21,11 +24,11 @@ const DashboardPage: React.FC = () => {
   return (
     <Layout style={{ height: "calc(100vh)" }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
+        <div className="demo-logo-vertical"></div>
         <Divider></Divider>
         <Menu
           theme="dark"
-          mode="inline" 
+          mode="inline"
         >
           <Menu.Item key="1" icon={<PictureOutlined />}>
             <Link to="/App/Image-Edit">Edit new image</Link>

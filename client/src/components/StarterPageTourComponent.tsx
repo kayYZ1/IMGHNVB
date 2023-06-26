@@ -44,7 +44,7 @@ const StarterPageTourComponent: React.FC = () => {
       <Button type="primary" onClick={() => setOpen(true)}>
         Begin Tour
       </Button>
-      <Tour open={open} onClose={() => setOpen(false)} steps={steps} placement='bottomRight'/>
+      <Tour open={open} onClose={() => setOpen(false)} steps={steps} placement='bottom'/>
     </>
   );
 };
