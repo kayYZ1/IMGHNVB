@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Modal } from 'antd';
+import { IFile } from '../../ts/interfaces/file.interface';
 
-const ImageModalComponent: React.FC = () => {
+const ImageModalComponent = (file: IFile) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const showModal = () => {
     setIsModalOpen(true);
   };
-
   const handleOk = () => {
     setIsModalOpen(false);
   };
-
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -22,9 +20,10 @@ const ImageModalComponent: React.FC = () => {
         Show
       </Button>
       <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <p>{file.uid}</p>
+        <p>{file.name}</p>
+        <p>{file.size}</p>
+        <p>{file.type}</p>
       </Modal>
     </>
   );

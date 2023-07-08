@@ -11,7 +11,7 @@ import ImageEditPage from "./pages/image-edit/ImageEditPage"
 import ImageListPage from "./pages/image-list/ImageListPage"
 import StartingPage from "./pages/starting-page/StartingPage"
 
-import ContentComponent from "./components/ContentComponent"
+import ContentComponent from "./components/shared/ContentComponent"
 
 const App = () => {
   return (

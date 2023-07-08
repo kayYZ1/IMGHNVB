@@ -9,7 +9,7 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Divider } from 'antd';
 
-import ContentComponent from '../../components/ContentComponent';
+import ContentComponent from '../../components/shared/ContentComponent';
 
 import "./DashboardPage.css"
 

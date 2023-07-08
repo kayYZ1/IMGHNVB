@@ -1,8 +1,14 @@
-import EmptyComponent from "../../components/EmptyComponent"
+import { useSelector } from "react-redux"
+
+import EmptyComponent from "../../components/shared/EmptyComponent"
 
 const ImageEditPage = () => {
+  const file = useSelector((state: any) => state.file)
+  console.log(file)
   return (
-    <EmptyComponent /> 
+    <div>
+      {file ? file.name : <EmptyComponent />}
+    </div>
   )
 }
 

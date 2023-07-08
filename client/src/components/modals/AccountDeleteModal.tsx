@@ -18,13 +18,11 @@ const AccountDeleteModal: React.FC = () => {
 
   return (
     <>
-      <Button type="primary" danger onClick={showModal} style={{marginLeft: "0.5rem"}}>
+      <Button type="primary" danger onClick={showModal} style={{ marginLeft: "0.5rem" }}>
         Delete
       </Button>
-      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okButtonProps={{ disabled: true }}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Modal title="Delete {demo}?" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okButtonProps={{ disabled: true }}>
+        <p>Are you sure you want to delete yout account? (This is a destructive action)</p>
       </Modal>
     </>
   );

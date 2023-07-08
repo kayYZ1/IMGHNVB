@@ -1,5 +1,35 @@
 .login-container {
-  height: 100%
+  height: 100%;
+  width: 100%;
+}
+
+.left-side-panel {
+  height: 100vh;
+  background-image: url("https://img.freepik.com/free-vector/global-networking-technology-background-digital-communication_53876-119501.jpg?w=826&t=st=1687622869~exp=1687623469~hmac=256acb807991c489c018b8a91e0a437c81d2ccb73bc77a0687e34942a859c916");
+  background-size: cover;
+}
+
+.right-side-panel {
+  height: 100vh;
+  background-image: url("https://gw.alipayobjects.com/zos/rmsportal/FfdJeJRQWjEeGTpqgBKj.png");
+}
+
+@media (max-width: 767px) {
+  /* Styles for screens below 768px width */
+  .login-container {
+    height: auto;
+  }
+
+  .left-side-panel {
+    display: none;
+  }
+
+  .right-side-panel {
+    height: auto;
+  }
+}
+.login-container {
+  height: 100%;
 }
 
 .left-side-panel {
