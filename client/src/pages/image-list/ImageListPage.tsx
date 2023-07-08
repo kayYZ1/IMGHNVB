@@ -1,5 +1,8 @@
 import { Divider } from "antd"
+
 import ImageTableComponent from "../../components/ImageTableComponent"
+
+import "./ImageListPage.css"
 
 const ImageListPage = () => {
   return (

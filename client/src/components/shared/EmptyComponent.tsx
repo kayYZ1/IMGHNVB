@@ -1,8 +1,7 @@
 import React from 'react';
 import { Empty } from 'antd';
-import { Link } from 'react-router-dom';
 
-import AddImageModal from './modals/AddImageModal';
+import AddImageModal from '../modals/AddImageModal';
 
 const EmptyComponent: React.FC = () => (
   <Empty

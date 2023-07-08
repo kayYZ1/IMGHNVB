@@ -10,16 +10,17 @@ const LoginPage = () => {
     <React.Fragment>
       <div className="login-container">
         <Row>
-        <Col span={12}>
-            <div className="left-side-panel">
+
+          <Col span={12}>
+            <div className="left-side-panel"></div>
+          </Col>
+
+          <Col span={12}>
+            <div className="right-side-panel">
+              <LoginForm />
             </div>
-        </Col>
-        <Col span={12}>
-          <div className="right-side-panel">
-            <LoginForm />
-          </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
       </div>
     </React.Fragment>
   )
