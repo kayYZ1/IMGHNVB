@@ -1,26 +1,19 @@
 import React from "react"
-import { Row, Col } from "antd"
-
-import LoginForm from "./LoginForm"
 
 import "./LoginStyle.css"
+
+import LoginForm from "./LoginForm"
 
 const LoginPage = () => {
   return (
     <React.Fragment>
       <div className="login-container">
-        <Row>
-
-          <Col span={12}>
-            <div className="left-side-panel"></div>
-          </Col>
-
-          <Col span={12}>
-            <div className="right-side-panel">
-              <LoginForm />
-            </div>
-          </Col>
-        </Row>
+        <div className="login__left centered">
+          <LoginForm />
+        </div>
+        <div className="login__right centered no__overflow">
+          <img className="img" src="https://res.cloudinary.com/diod8pjhj/image/upload/v1670658158/3d1920_e2qpuj.jpg" alt="picture"></img>
+        </div>
       </div>
     </React.Fragment>
   )
