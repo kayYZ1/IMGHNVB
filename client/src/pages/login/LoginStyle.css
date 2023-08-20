@@ -16,6 +16,10 @@ html {
   padding: 40px;
 }
 
+.form {
+  max-width: 500px;
+}
+
 .centered {
   display: flex;
   align-items: center;
