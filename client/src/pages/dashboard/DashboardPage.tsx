@@ -6,10 +6,13 @@ import {
   SettingOutlined,
   PictureOutlined,
   FileImageOutlined,
+  RollbackOutlined,
+  HomeOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Divider } from 'antd';
 
 import ContentComponent from '../../components/shared/ContentComponent';
+import LeaveDemoModal from '../../components/modals/LeaveDemoModal';
 
 import "./DashboardPage.css"
 
@@ -30,14 +33,20 @@ const DashboardPage: React.FC = () => {
           theme="dark"
           mode="inline"
         >
-          <Menu.Item key="1" icon={<PictureOutlined />}>
+          <Menu.Item key="1" icon={<HomeOutlined />}>
+            <Link to="/App/">Home</Link>
+          </Menu.Item>
+          <Menu.Item key="2" icon={<PictureOutlined />}>
             <Link to="/App/Image-Edit">Edit new image</Link>
           </Menu.Item>
-          <Menu.Item key="2" icon={<FileImageOutlined />}>
+          <Menu.Item key="3" icon={<FileImageOutlined />}>
             <Link to="/App/Image-List">Your images</Link>
           </Menu.Item>
-          <Menu.Item key="3" icon={<SettingOutlined />}>
+          <Menu.Item key="4" icon={<SettingOutlined />}>
             <Link to="/App/Settings">Settings</Link>
+          </Menu.Item>
+          <Menu.Item key="5" icon={<RollbackOutlined />}>
+            <LeaveDemoModal />
           </Menu.Item>
         </Menu>
 
