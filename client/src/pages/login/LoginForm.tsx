@@ -54,6 +54,7 @@ const LoginForm: React.FC = () => (
       <Button type="primary" htmlType="submit">
         Submit
       </Button>
+      <Button type="default" htmlType="button" className="btn-demo">Demo</Button>
     </Form.Item>
   </Form>
 );
