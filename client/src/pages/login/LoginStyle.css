@@ -43,6 +43,10 @@ html {
   max-width: 100%
 }
 
+.btn-submit {
+  margin-left: 0.5em;
+}
+
 .btn-demo {
   margin-left: 0.5em;
 }

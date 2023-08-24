@@ -1,17 +1,81 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
 .register-container {
-  height: 100%
-}
-
-.left-side-panel {
-  height: 100vh;
-  background-image: url("https://img.freepik.com/free-vector/global-networking-technology-background-digital-communication_53876-119501.jpg?w=826&t=st=1687622869~exp=1687623469~hmac=256acb807991c489c018b8a91e0a437c81d2ccb73bc77a0687e34942a859c916");
-  background-size: cover;
-  display: flex;
-  flex: 1;
-  align-items: flex-end;
-}
-
-.right-side-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   height: 100vh;
   background-image: url("https://gw.alipayobjects.com/zos/rmsportal/FfdJeJRQWjEeGTpqgBKj.png");
+}
+
+.register__left {
+  order: 1;
+  padding: 40px;
+}
+
+.form {
+  max-width: 500px;
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register__right {
+  order: 2;
+}
+
+.no__overflow {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.img {
+  height: 100%;
+  object-fit: cover;
+  max-width: 100%
+}
+
+@media only screen and (max-width: 800px) {
+  .register-container {
+    grid-template-columns: auto;
+  }
+
+  .register__left {
+    order: 2;
+    padding: 20px;
+  }
+
+  .register__right {
+    order: 1;
+  }
+
+  .centered {
+    align-items: flex-start;
+  }
+
+  .no__overflow {
+    align-items: flex-start;
+  }
+
+  h4 {
+    text-align: center;
+  }
+
+  .img {
+    width: 100vw;
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  .img {
+    width: 120%;
+  }
 }
