@@ -6,6 +6,8 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 import { Link } from 'react-router-dom';
 
+import UploadAvatarComponent from '../../components/shared/UploadAvatarComponent';
+
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
@@ -72,8 +74,11 @@ const RegisterForm: React.FC = () => (
 
       </Select>
     </Form.Item>
+    <Form.Item label="Avatar" style={{width: 400}}>
+      <UploadAvatarComponent />
+    </Form.Item>
     <Form.Item name={["user", 'date']} label="Birthday" rules={[{ required: true }]}>
-      <DatePicker onChange={onChange} style={{width: 200}}/>
+      <DatePicker onChange={onChange} style={{ width: 200 }} />
     </Form.Item>
     <Form.Item name={['user', 'website']} label="Website">
       <Input />
