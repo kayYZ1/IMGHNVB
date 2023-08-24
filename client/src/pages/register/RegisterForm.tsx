@@ -1,5 +1,9 @@
 import React from 'react';
-import { Button, Form, Input, InputNumber } from 'antd';
+import { Button, Form, Input, Select } from 'antd';
+import type { DatePickerProps } from 'antd';
+import { DatePicker } from 'antd';
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+
 import { Link } from 'react-router-dom';
 
 const layout = {
@@ -24,6 +28,10 @@ const onFinish = (values: any) => {
   console.log(values);
 };
 
+const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+  console.log(date, dateString);
+};
+
 const RegisterForm: React.FC = () => (
   <Form
     {...layout}
@@ -35,17 +43,43 @@ const RegisterForm: React.FC = () => (
     <Form.Item name={['user', 'name']} label="Name" rules={[{ required: true }]}>
       <Input />
     </Form.Item>
-    <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email' }]}>
+    <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email', required: true }]}>
       <Input />
     </Form.Item>
-    <Form.Item name={['user', 'age']} label="Age" rules={[{ type: 'number', min: 0, max: 99 }]}>
-      <InputNumber />
+    <Form.Item name={['user', 'password']} label="Password" rules={[{ required: true }]}>
+      <Input.Password
+        placeholder="Input password"
+        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+      />
+    </Form.Item>
+    <Form.Item name={['user', 'repeatPasword']} label="Password x2" rules={[{ required: true }]}>
+      <Input.Password
+        placeholder="Repeat password"
+        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+      />
+    </Form.Item>
+    <Form.Item name={["user", "gender"]} label="Gender">
+      <Select style={{ width: 200 }} options={[
+        {
+          label: "Please select",
+          options: [
+            { label: "Male", value: "male" },
+            { label: "Female", value: "female" },
+            { label: "No answer", value: "noAnswer" }
+          ]
+        }
+      ]}>
+
+      </Select>
+    </Form.Item>
+    <Form.Item name={["user", 'date']} label="Birthday" rules={[{ required: true }]}>
+      <DatePicker onChange={onChange} style={{width: 200}}/>
     </Form.Item>
     <Form.Item name={['user', 'website']} label="Website">
       <Input />
     </Form.Item>
     <Form.Item name={['user', 'introduction']} label="Intro">
-      <Input.TextArea autoSize={{ minRows: 1, maxRows: 4 }}/>
+      <Input.TextArea autoSize={{ minRows: 1, maxRows: 4 }} />
     </Form.Item>
     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
       <Button type="primary" htmlType="submit">
