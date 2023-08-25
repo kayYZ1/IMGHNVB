@@ -20,9 +20,6 @@ const validateMessages = {
     email: '${label} is not a valid email!',
     number: '${label} is not a valid number!',
   },
-  number: {
-    range: '${label} must be between ${min} and ${max}',
-  },
 };
 /* eslint-enable no-template-curly-in-string */
 
@@ -31,7 +28,7 @@ const onFinish = (values: any) => {
 };
 
 const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-  console.log(date, dateString);
+  console.log(date, dateString)
 };
 
 const RegisterForm: React.FC = () => (
@@ -74,11 +71,11 @@ const RegisterForm: React.FC = () => (
 
       </Select>
     </Form.Item>
-    <Form.Item label="Avatar" style={{width: 300}}>
+    <Form.Item name={["user", "avatar"]} label="Avatar" style={{ width: 300 }}>
       <UploadAvatarComponent />
     </Form.Item>
     <Form.Item name={["user", 'date']} label="Birthday" rules={[{ required: true }]}>
-      <DatePicker onChange={onChange} style={{ width: 200 }} />
+      <DatePicker onChange={onChange} style={{ width: 200 }} format={["MM/DD/YYYY", "MMDDYYYY"]}/>
     </Form.Item>
     <Form.Item name={['user', 'introduction']} label="Intro">
       <Input.TextArea autoSize={{ minRows: 1, maxRows: 4 }} />
