@@ -74,14 +74,11 @@ const RegisterForm: React.FC = () => (
 
       </Select>
     </Form.Item>
-    <Form.Item label="Avatar" style={{width: 400}}>
+    <Form.Item label="Avatar" style={{width: 300}}>
       <UploadAvatarComponent />
     </Form.Item>
     <Form.Item name={["user", 'date']} label="Birthday" rules={[{ required: true }]}>
       <DatePicker onChange={onChange} style={{ width: 200 }} />
-    </Form.Item>
-    <Form.Item name={['user', 'website']} label="Website">
-      <Input />
     </Form.Item>
     <Form.Item name={['user', 'introduction']} label="Intro">
       <Input.TextArea autoSize={{ minRows: 1, maxRows: 4 }} />

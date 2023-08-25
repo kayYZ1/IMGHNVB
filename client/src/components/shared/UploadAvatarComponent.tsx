@@ -4,14 +4,7 @@ import { Upload } from 'antd';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 
 const UploadAvatarComponent = () => {
-  const [fileList, setFileList] = useState<UploadFile[]>([
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-  ]);
+  const [fileList, setFileList] = useState<UploadFile[]>([])
   const onChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
     setFileList(newFileList);
   };
@@ -34,11 +27,16 @@ const UploadAvatarComponent = () => {
   return (
     <ImgCrop rotationSlider>
       <Upload
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        action="http://localhost:3000/"
+        accept='.png, .jpeg'
         listType="picture-card"
         fileList={fileList}
         onChange={onChange}
         onPreview={onPreview}
+        beforeUpload={(file) => {
+          console.log(file)
+          return false
+        }}
       >
         {fileList.length < 1 && '+ Upload'}
       </Upload>
