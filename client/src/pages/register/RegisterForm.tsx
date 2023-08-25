@@ -39,10 +39,10 @@ const RegisterForm: React.FC = () => (
     initialValues={{ avatar: "https://firebasestorage.googleapis.com/v0/b/imagert-9b377.appspot.com/o/Question.png?alt=media&token=60ca0b98-8e65-470e-b92b-99ebadddc1c6" }}
     validateMessages={validateMessages}
   >
-    <Form.Item name={['user', 'name']} label="Name" rules={[{ required: true }]}>
+    <Form.Item name='name' label="Name" hasFeedback rules={[{ required: true }]}>
       <Input />
     </Form.Item>
-    <Form.Item name={['user', 'email']} label="Email" hasFeedback rules={[{ type: 'email', required: true }]}>
+    <Form.Item name='email' label="Email" hasFeedback rules={[{ type: 'email', required: true }]}>
       <Input />
     </Form.Item>
     <Form.Item
@@ -82,7 +82,7 @@ const RegisterForm: React.FC = () => (
       <Input.Password />
     </Form.Item>
 
-    <Form.Item name={["user", "gender"]} label="Gender">
+    <Form.Item name="gender" label="Gender" hasFeedback>
       <Select style={{ width: 200 }} options={[
         {
           label: "Please select",
@@ -96,13 +96,13 @@ const RegisterForm: React.FC = () => (
 
       </Select>
     </Form.Item>
-    <Form.Item name={["user", "avatar"]} label="Avatar" style={{ width: 300 }}>
+    <Form.Item name="avatar" label="Avatar" style={{ width: 300 }}>
       <UploadAvatarComponent />
     </Form.Item>
-    <Form.Item name={["user", 'date']} label="Birthday" rules={[{ required: true }]}>
+    <Form.Item name='date' label="Birthday" hasFeedback rules={[{ required: true }]}>
       <DatePicker onChange={onChange} style={{ width: 200 }} format={["MM/DD/YYYY", "MMDDYYYY"]} />
     </Form.Item>
-    <Form.Item name={['user', 'introduction']} label="Intro">
+    <Form.Item name='introduction' hasFeedback label="Intro">
       <Input.TextArea autoSize={{ minRows: 1, maxRows: 4 }} />
     </Form.Item>
     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
