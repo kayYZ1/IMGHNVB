@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Form, Input, Select } from 'antd';
 import type { DatePickerProps } from 'antd';
 import { DatePicker } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 import { Link } from 'react-router-dom';
 
@@ -37,26 +36,52 @@ const RegisterForm: React.FC = () => (
     name="nest-messages"
     onFinish={onFinish}
     style={{ maxWidth: 600 }}
+    initialValues={{ avatar: "https://firebasestorage.googleapis.com/v0/b/imagert-9b377.appspot.com/o/Question.png?alt=media&token=60ca0b98-8e65-470e-b92b-99ebadddc1c6" }}
     validateMessages={validateMessages}
   >
     <Form.Item name={['user', 'name']} label="Name" rules={[{ required: true }]}>
       <Input />
     </Form.Item>
-    <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email', required: true }]}>
+    <Form.Item name={['user', 'email']} label="Email" hasFeedback rules={[{ type: 'email', required: true }]}>
       <Input />
     </Form.Item>
-    <Form.Item name={['user', 'password']} label="Password" rules={[{ required: true }]}>
-      <Input.Password
-        placeholder="Input password"
-        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-      />
+    <Form.Item
+      name="password"
+      label="Password"
+      rules={[
+        {
+          required: true,
+          message: 'Please input your password!',
+        },
+      ]}
+      hasFeedback
+    >
+      <Input.Password />
     </Form.Item>
-    <Form.Item name={['user', 'repeatPasword']} label="Password x2" rules={[{ required: true }]}>
-      <Input.Password
-        placeholder="Repeat password"
-        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-      />
+
+    <Form.Item
+      name="confirm"
+      label="Confirm"
+      dependencies={['password']}
+      hasFeedback
+      rules={[
+        {
+          required: true,
+          message: 'Please confirm your password!',
+        },
+        ({ getFieldValue }) => ({
+          validator(_, value) {
+            if (!value || getFieldValue('password') === value) {
+              return Promise.resolve();
+            }
+            return Promise.reject(new Error('Passwords do not match!'));
+          },
+        }),
+      ]}
+    >
+      <Input.Password />
     </Form.Item>
+
     <Form.Item name={["user", "gender"]} label="Gender">
       <Select style={{ width: 200 }} options={[
         {
@@ -75,7 +100,7 @@ const RegisterForm: React.FC = () => (
       <UploadAvatarComponent />
     </Form.Item>
     <Form.Item name={["user", 'date']} label="Birthday" rules={[{ required: true }]}>
-      <DatePicker onChange={onChange} style={{ width: 200 }} format={["MM/DD/YYYY", "MMDDYYYY"]}/>
+      <DatePicker onChange={onChange} style={{ width: 200 }} format={["MM/DD/YYYY", "MMDDYYYY"]} />
     </Form.Item>
     <Form.Item name={['user', 'introduction']} label="Intro">
       <Input.TextArea autoSize={{ minRows: 1, maxRows: 4 }} />
