@@ -33,7 +33,7 @@ const onChange: DatePickerProps['onChange'] = (date, dateString) => {
 const RegisterForm: React.FC = () => (
   <Form
     {...layout}
-    name="nest-messages"
+    name="RegisterForm"
     onFinish={onFinish}
     style={{ maxWidth: 600 }}
     initialValues={{ avatar: "https://firebasestorage.googleapis.com/v0/b/imagert-9b377.appspot.com/o/Question.png?alt=media&token=60ca0b98-8e65-470e-b92b-99ebadddc1c6" }}
