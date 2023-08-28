@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
 
 const onFinish = (values: any) => {
@@ -13,7 +13,6 @@ const onFinishFailed = (errorInfo: any) => {
 type FieldType = {
   username?: string;
   password?: string;
-  remember?: string;
 };
 
 const LoginForm: React.FC = () => (
@@ -41,14 +40,6 @@ const LoginForm: React.FC = () => (
       rules={[{ required: true, message: 'Please input your password!' }]}
     >
       <Input.Password />
-    </Form.Item>
-
-    <Form.Item<FieldType>
-      name="remember"
-      valuePropName="checked"
-      wrapperCol={{ offset: 2, span: 32 }}
-    >
-      <Checkbox>Remember me</Checkbox>
     </Form.Item>
 
     <Form.Item wrapperCol={{ offset: 2, span: 32 }}>
