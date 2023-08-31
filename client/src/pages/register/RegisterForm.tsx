@@ -7,6 +7,7 @@ import { useForm } from 'antd/es/form/Form';
 import { Link } from 'react-router-dom';
 
 import UploadAvatarComponent from '../../components/shared/UploadAvatarComponent';
+import moment from 'moment';
 
 const layout = {
   labelCol: { span: 8 },
@@ -26,16 +27,16 @@ const validateMessages = {
 const RegisterForm: React.FC = () => {
   const [form] = useForm()
   const onFinish = (values: IUser) => {
+    values["date"] = moment(values.date).format("YYYY-MM-DD")
+
     console.log(values);
   };
 
-  const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-    console.log(date, dateString)
-    /*form.setFieldsValue({
-      date: dateString
-    })*/
-    form.setFieldValue("date", dateString)
+  const onChange: DatePickerProps['onChange'] = (date) => {
+    const dateFormat = date?.format("YYYY/MM/DD")
+    console.log(dateFormat)
   };
+
   return (
     <Form
       {...layout}
@@ -107,7 +108,7 @@ const RegisterForm: React.FC = () => {
         <UploadAvatarComponent />
       </Form.Item>
       <Form.Item name='date' label="Birthday" hasFeedback rules={[{ required: true }]}>
-        <DatePicker onChange={onChange} style={{ width: 200 }} />
+        <DatePicker onChange={onChange} style={{ width: 200 }} format="YYYY-MM-DD" />
       </Form.Item>
       <Form.Item name='introduction' hasFeedback label="Intro">
         <Input.TextArea autoSize={{ minRows: 1, maxRows: 4 }} />
