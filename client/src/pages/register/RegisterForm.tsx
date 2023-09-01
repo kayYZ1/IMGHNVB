@@ -3,11 +3,16 @@ import { Button, Form, Input, Select } from 'antd';
 import type { DatePickerProps } from 'antd';
 import { DatePicker } from 'antd';
 import { useForm } from 'antd/es/form/Form';
-
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import UploadAvatarComponent from '../../components/shared/UploadAvatarComponent';
-import moment from 'moment';
+import { IUser } from '../../ts/interfaces/user.interface';
+import { db } from '../../firebase/setup';
+
+import { auth } from '../../firebase/setup';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth/cordova';
+import { addDoc, collection } from 'firebase/firestore/lite';
 
 const layout = {
   labelCol: { span: 8 },
@@ -28,13 +33,20 @@ const RegisterForm: React.FC = () => {
   const [form] = useForm()
   const onFinish = (values: IUser) => {
     values["date"] = moment(values.date).format("YYYY-MM-DD")
+    const userCollectionRef = collection(db, "users")
 
     console.log(values);
+    createUserWithEmailAndPassword(auth, values.email, values.password)
+    //updateProfile(auth.currentUser, { displayName: values.name, photoURL: values.avatar })
+    addDoc(userCollectionRef, { values }).then((response) => {
+      console.log(response)
+    }).catch((error) => {
+      console.log(error)
+    })
   };
 
-  const onChange: DatePickerProps['onChange'] = (date) => {
-    const dateFormat = date?.format("YYYY/MM/DD")
-    console.log(dateFormat)
+  const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+    console.log(date, dateString)
   };
 
   return (

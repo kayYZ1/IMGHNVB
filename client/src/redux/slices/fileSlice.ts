@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const fileSlice = createSlice({
-  name: 'file',
+  name: "file",
   initialState: null,
   reducers: {
     setFile: (_state, action) => {
