@@ -10,6 +10,7 @@ import {
   HomeOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Divider } from 'antd';
+import { useSelector } from 'react-redux';
 
 import ContentComponent from '../../components/shared/ContentComponent';
 import LeaveDemoModal from '../../components/modals/LeaveDemoModal';
@@ -23,6 +24,8 @@ const DashboardPage: React.FC = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const user = useSelector((state: any) => state.data.user.user)
 
   return (
     <Layout style={{ height: "calc(100vh)" }}>
@@ -46,7 +49,7 @@ const DashboardPage: React.FC = () => {
             <Link to="/App/Settings">Settings</Link>
           </Menu.Item>
           <Menu.Item key="5" icon={<RollbackOutlined />}>
-            <LeaveDemoModal />
+            {user && user.email === "demo@demo.demo" ? <LeaveDemoModal/> : "Log out"}
           </Menu.Item>
         </Menu>
 

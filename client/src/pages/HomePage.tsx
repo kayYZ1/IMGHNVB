@@ -14,7 +14,6 @@ const HomePage = () => {
           uid: authUser.uid,
           username: authUser.displayName,
           email: authUser.email,
-          avatar: authUser.photoURL
         }))
         dispatch(setLoading(false))
       } else {

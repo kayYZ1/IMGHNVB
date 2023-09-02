@@ -12,6 +12,7 @@ import ImageListPage from "./pages/image-list/ImageListPage"
 import StartingPage from "./pages/starting-page/StartingPage"
 
 import ContentComponent from "./components/shared/ContentComponent"
+import ProtectedRoute from "./components/ProtectedRoutes"
 
 const App = () => {
   return (
@@ -21,12 +22,14 @@ const App = () => {
         <Route path="*" element={<NotFoundPage />} />
         <Route path="Login" element={<LoginPage />} />
         <Route path="Register" element={<RegisterPage />} />
-        <Route path="App" element={<DashboardPage />}>
-          <Route element={<ContentComponent />}>
-            <Route path="" element={<StartingPage />} />
-            <Route path="Image-Edit" element={<ImageEditPage />} />
-            <Route path="Image-List" element={<ImageListPage />} />
-            <Route path="Settings" element={<SettingsPage />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="App" element={<DashboardPage />}>
+            <Route element={<ContentComponent />}>
+              <Route path="" element={<StartingPage />} />
+              <Route path="Image-Edit" element={<ImageEditPage />} />
+              <Route path="Image-List" element={<ImageListPage />} />
+              <Route path="Settings" element={<SettingsPage />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
