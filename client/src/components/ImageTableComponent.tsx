@@ -7,7 +7,7 @@ import ImageModalComponent from './modals/ImageModalComponent';
 import { IFile } from '../ts/interfaces/file.interface';
 
 const ImageTableComponent: React.FC = () => {
-  const file: IFile = useSelector((state: any) => state.file)
+  const file: IFile = useSelector((state: any) => state.data.file)
   const data: IFile[] = file ? [{
     uid: file.uid,
     name: file.name,

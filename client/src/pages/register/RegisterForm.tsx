@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Input, Select } from 'antd';
 import type { DatePickerProps } from 'antd';
 import { DatePicker } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import { IUser } from '../../ts/interfaces/user.interface';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import UploadAvatarComponent from '../../components/shared/UploadAvatarComponent';
-import moment from 'moment';
+import { IUser } from '../../ts/interfaces/user.interface';
+import { db } from '../../firebase/setup';
+
+import { auth } from '../../firebase/setup';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, collection, setDoc } from 'firebase/firestore';
+import AlertComponent from '../../components/alerts/AlertComponent';
+import SpinComponent from '../../components/shared/SpinComponent';
 
 const layout = {
   labelCol: { span: 8 },
@@ -25,16 +33,41 @@ const validateMessages = {
 /* eslint-enable no-template-curly-in-string */
 
 const RegisterForm: React.FC = () => {
-  const [form] = useForm()
-  const onFinish = (values: IUser) => {
-    values["date"] = moment(values.date).format("YYYY-MM-DD")
+  const [errMessage, setErrMessage] = useState("")
+  const [loading, setLoading] = useState(false)
 
-    console.log(values);
+  const [form] = useForm()
+
+  const onFinish = async (values: IUser) => {
+    values["date"] = moment(values.date).format("YYYY-MM-DD")
+    const dbUsers = collection(db, "users")
+
+    try {
+      setLoading(true)
+      const userCred = await createUserWithEmailAndPassword(auth, values.email, values.password)
+
+      const user = userCred.user;
+      await setDoc(doc(dbUsers, user.uid), {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+        gender: values.gender,
+        avatar: values.avatar,
+        date: values.date,
+        introduction: values.introduction
+      })
+      setLoading(false)
+    } catch (e: any) {
+      setLoading(true)
+      console.error(e)
+      setErrMessage(e.message)
+      console.log(errMessage)
+      setLoading(false)
+    }
   };
 
-  const onChange: DatePickerProps['onChange'] = (date) => {
-    const dateFormat = date?.format("YYYY/MM/DD")
-    console.log(dateFormat)
+  const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+    console.log(date, dateString)
   };
 
   return (
@@ -115,10 +148,11 @@ const RegisterForm: React.FC = () => {
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
         <Button type="primary" htmlType="submit">
-          Sign up
+          {loading ? <SpinComponent /> : "Sign up"}
         </Button>
         <Button type="default" htmlType="button" className="btn-demo"><Link to="/App">Demo</Link></Button>
       </Form.Item>
+      {errMessage ? <AlertComponent message="Login error" description={errMessage} type="error" /> : ""}
     </Form>
   );
 }
