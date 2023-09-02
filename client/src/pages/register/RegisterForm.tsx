@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 import UploadAvatarComponent from '../../components/shared/UploadAvatarComponent';
-import { IUser } from '../../ts/interfaces/user.interface';
 import { db } from '../../firebase/setup';
 
 import { auth } from '../../firebase/setup';
