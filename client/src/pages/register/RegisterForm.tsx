@@ -14,6 +14,7 @@ import { auth } from '../../firebase/setup';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, collection, setDoc } from 'firebase/firestore';
 import AlertComponent from '../../components/alerts/AlertComponent';
+import SpinComponent from '../../components/shared/SpinComponent';
 
 const layout = {
   labelCol: { span: 8 },
@@ -32,6 +33,8 @@ const validateMessages = {
 
 const RegisterForm: React.FC = () => {
   const [errMessage, setErrMessage] = useState("")
+  const [loading, setLoading] = useState(false)
+
   const [form] = useForm()
 
   const onFinish = async (values: IUser) => {
@@ -39,6 +42,7 @@ const RegisterForm: React.FC = () => {
     const dbUsers = collection(db, "users")
 
     try {
+      setLoading(true)
       const userCred = await createUserWithEmailAndPassword(auth, values.email, values.password);
 
       const user = userCred.user;
@@ -51,10 +55,13 @@ const RegisterForm: React.FC = () => {
         date: values.date,
         introduction: values.introduction
       })
+      setLoading(false)
     } catch (e: any) {
+      setLoading(true)
       console.error(e)
       setErrMessage(e.message)
       console.log(errMessage)
+      setLoading(false)
     }
   };
 
@@ -140,7 +147,7 @@ const RegisterForm: React.FC = () => {
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
         <Button type="primary" htmlType="submit">
-          Sign up
+          {loading ? <SpinComponent /> : "Sign up"}
         </Button>
         <Button type="default" htmlType="button" className="btn-demo"><Link to="/App">Demo</Link></Button>
       </Form.Item>
