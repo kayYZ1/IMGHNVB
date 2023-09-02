@@ -3,6 +3,7 @@ import { Button, Form, Input, Select } from 'antd';
 import type { DatePickerProps } from 'antd';
 import { DatePicker } from 'antd';
 import { useForm } from 'antd/es/form/Form';
+import { IUser } from '../../ts/interfaces/user.interface';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
