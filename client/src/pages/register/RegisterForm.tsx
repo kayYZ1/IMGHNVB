@@ -43,7 +43,7 @@ const RegisterForm: React.FC = () => {
 
     try {
       setLoading(true)
-      const userCred = await createUserWithEmailAndPassword(auth, values.email, values.password);
+      const userCred = await createUserWithEmailAndPassword(auth, values.email, values.password)
 
       const user = userCred.user;
       await setDoc(doc(dbUsers, user.uid), {
