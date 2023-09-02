@@ -11,8 +11,9 @@ import { IUser } from '../../ts/interfaces/user.interface';
 import { db } from '../../firebase/setup';
 
 import { auth } from '../../firebase/setup';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth/cordova';
-import { addDoc, collection } from 'firebase/firestore/lite';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, collection, setDoc } from 'firebase/firestore';
+import AlertComponent from '../../components/alerts/AlertComponent';
 
 const layout = {
   labelCol: { span: 8 },
@@ -30,19 +31,30 @@ const validateMessages = {
 /* eslint-enable no-template-curly-in-string */
 
 const RegisterForm: React.FC = () => {
+  let errMessage = ""
   const [form] = useForm()
-  const onFinish = (values: IUser) => {
-    values["date"] = moment(values.date).format("YYYY-MM-DD")
-    const userCollectionRef = collection(db, "users")
 
-    console.log(values);
-    createUserWithEmailAndPassword(auth, values.email, values.password)
-    //updateProfile(auth.currentUser, { displayName: values.name, photoURL: values.avatar })
-    addDoc(userCollectionRef, { values }).then((response) => {
-      console.log(response)
-    }).catch((error) => {
-      console.log(error)
-    })
+  const onFinish = async (values: IUser) => {
+    values["date"] = moment(values.date).format("YYYY-MM-DD")
+    const dbUsers = collection(db, "users")
+
+    try {
+      const userCred = await createUserWithEmailAndPassword(auth, values.email, values.password);
+
+      const user = userCred.user;
+      await setDoc(doc(dbUsers, user.uid), {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+        gender: values.gender,
+        avatar: values.avatar,
+        date: values.date,
+        introduction: values.introduction
+      })
+    } catch (error: any) {
+      console.error(error)
+      errMessage = error.message
+    }
   };
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
@@ -131,6 +143,7 @@ const RegisterForm: React.FC = () => {
         </Button>
         <Button type="default" htmlType="button" className="btn-demo"><Link to="/App">Demo</Link></Button>
       </Form.Item>
+      {errMessage ? <AlertComponent message="Login error" description={errMessage} type="error" /> : ""}
     </Form>
   );
 }
