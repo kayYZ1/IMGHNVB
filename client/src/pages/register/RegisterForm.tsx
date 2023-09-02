@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Input, Select } from 'antd';
 import type { DatePickerProps } from 'antd';
 import { DatePicker } from 'antd';
@@ -31,7 +31,7 @@ const validateMessages = {
 /* eslint-enable no-template-curly-in-string */
 
 const RegisterForm: React.FC = () => {
-  let errMessage = ""
+  const [errMessage, setErrMessage] = useState("")
   const [form] = useForm()
 
   const onFinish = async (values: IUser) => {
@@ -51,9 +51,10 @@ const RegisterForm: React.FC = () => {
         date: values.date,
         introduction: values.introduction
       })
-    } catch (error: any) {
-      console.error(error)
-      errMessage = error.message
+    } catch (e: any) {
+      console.error(e)
+      setErrMessage(e.message)
+      console.log(errMessage)
     }
   };
 
